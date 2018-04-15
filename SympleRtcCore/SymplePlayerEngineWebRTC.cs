@@ -313,7 +313,7 @@ namespace SympleRtcCore
                     Messenger.Broadcast(SympleLog.LogDebug, "videoTracks in localStream: ");
                     foreach (var track in videoTracks)
                     {
-                        Messenger.Broadcast(SympleLog.LogDebug, track.Id + ", enabled = " + track.Enabled + ", kind = " + track.Kind + ", suspended = " + track.Suspended);
+                        Messenger.Broadcast(SympleLog.LogDebug, track.Id + ", enabled = " + track.Enabled + ", kind = " + track.Kind);
                     }
                     var audioTracks = _localStream.GetAudioTracks();
                     Messenger.Broadcast(SympleLog.LogDebug, "audioTracks in localStream: ");
@@ -324,7 +324,8 @@ namespace SympleRtcCore
 
                     if (videoTracks.Count > 0)
                     {
-                        var source = GetMedia().CreateMediaSource(videoTracks[0], Symple.LocalMediaStreamId);
+                        //var source = GetMedia().CreateMediaSource(videoTracks[0], Symple.LocalMediaStreamId); // was valid for org.webrtc 1.54, not existing anymore
+                        var source = GetMedia().CreateMediaStreamSource(Symple.LocalMediaStreamId);
 
                         Messenger.Broadcast(SympleLog.CreatedMediaSource, source);
 
@@ -500,7 +501,8 @@ namespace SympleRtcCore
                 MediaVideoTrack peerVideoTrack = mediaStreamEvent.Stream.GetVideoTracks().FirstOrDefault();
                 if (peerVideoTrack != null)
                 {
-                    IMediaSource mediaSource = GetMedia().CreateMediaSource(peerVideoTrack, RemotePeerVideoTrackId);
+                    //IMediaSource mediaSource = GetMedia().CreateMediaSource(peerVideoTrack, RemotePeerVideoTrackId); // was valid in org.webrt 1.54, not valid anymore
+                    IMediaSource mediaSource = GetMedia().CreateMediaStreamSource(RemotePeerVideoTrackId);
                     Messenger.Broadcast(SympleLog.LogInfo, "Created video source for remote peer video");
                     Messenger.Broadcast(SympleLog.CreatedMediaSource, mediaSource);
                 }
