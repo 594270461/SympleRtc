@@ -5,7 +5,9 @@ using System.Text;
 using System.Diagnostics;
 
 
+
 #if NETFX_CORE
+using Windows.UI.Xaml.Controls;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using Org.WebRtc;
@@ -20,8 +22,8 @@ namespace SympleRtcCore
 
         bool initiator;
 
-        const string RemotePeerVideoTrackId = "remote_peer_video_track_id";
-
+        public const string RemotePeerVideoTrackId = "remote_peer_video_track_id";
+        
 #if NETFX_CORE
         private bool webrtcInitialized = false;
         private RTCConfiguration rtcConfig;
@@ -501,10 +503,14 @@ namespace SympleRtcCore
                 MediaVideoTrack peerVideoTrack = mediaStreamEvent.Stream.GetVideoTracks().FirstOrDefault();
                 if (peerVideoTrack != null)
                 {
+                    Messenger.Broadcast(SympleLog.RemoteStreamAdded, GetMedia(), peerVideoTrack);
+
+                    
                     //IMediaSource mediaSource = GetMedia().CreateMediaSource(peerVideoTrack, RemotePeerVideoTrackId); // was valid in org.webrt 1.54, not valid anymore
-                    IMediaSource mediaSource = GetMedia().CreateMediaStreamSource(RemotePeerVideoTrackId);
-                    Messenger.Broadcast(SympleLog.LogInfo, "Created video source for remote peer video");
-                    Messenger.Broadcast(SympleLog.CreatedMediaSource, mediaSource);
+                    //Messenger.Broadcast(SympleLog.LogInfo, "Creating video source for remote peer video");
+                    //IMediaSource mediaSource = GetMedia().CreateMediaStreamSource(RemotePeerVideoTrackId);
+                    //Messenger.Broadcast(SympleLog.LogInfo, "Created video source for remote peer video");
+                    //Messenger.Broadcast(SympleLog.CreatedMediaSource, mediaSource);
                 }
                 else
                 {
@@ -518,6 +524,13 @@ namespace SympleRtcCore
             pc.OnRemoveStream += (MediaStreamEvent mediaStreamEvent) =>
             {
                 Messenger.Broadcast(SympleLog.LogInfo, "symple:webrtc: remote stream removed: " + mediaStreamEvent);
+
+                MediaVideoTrack peerVideoTrack = mediaStreamEvent.Stream.GetVideoTracks().FirstOrDefault();
+
+                Messenger.Broadcast(SympleLog.RemoteStreamRemoved, GetMedia(), peerVideoTrack);
+
+
+                
 
                 //this.video.stop();
                 //this.video.src = "";

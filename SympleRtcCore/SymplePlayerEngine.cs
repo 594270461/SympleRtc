@@ -13,7 +13,7 @@ namespace SympleRtcCore
 {
     public abstract class SymplePlayerEngine
     {
-        SymplePlayer player;
+        protected SymplePlayer player;
         float fps;
         int seq;
         Stopwatch stopwatch = null;

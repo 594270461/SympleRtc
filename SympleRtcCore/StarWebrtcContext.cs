@@ -5,6 +5,7 @@ using System.Text;
 using System.Diagnostics;
 
 #if NETFX_CORE
+using Windows.UI.Xaml.Controls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
@@ -78,6 +79,13 @@ namespace SympleRtcCore
         public int RequestedVideoHeight { get; set; }
 
         public string LocalPeerGroup { get; set; } = "public";
+
+#if NETFX_CORE
+        /// <summary>
+        /// The XAML MediaElement that should be used to display incoming video.
+        /// </summary>
+        public MediaElement ReceiveVideoMediaElement { get; set; }
+#endif
 
         public static StarWebrtcContext CreateAnnotationReceiverContext()
         {
@@ -176,6 +184,7 @@ namespace SympleRtcCore
 
             playerOptions.userMediaConstraints.audioEnabled = this.AudioEnabled;
             playerOptions.userMediaConstraints.videoEnabled = this.VideoEnabled;
+            playerOptions.ReceiveVideoMediaElement = ReceiveVideoMediaElement;
 
             playerOptions.engine = "WebRTC";
 
@@ -506,6 +515,7 @@ namespace SympleRtcCore
             player.play(playParams);
 
             var engine = (SymplePlayerEngineWebRTC)player.engine;
+            
             engine.sendLocalSDP = (desc) =>
             {
                 Messenger.Broadcast(SympleLog.LogTrace, "send offer");

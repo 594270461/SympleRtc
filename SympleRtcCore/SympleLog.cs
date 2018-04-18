@@ -35,5 +35,8 @@ namespace SympleRtcCore
         // triggered whenever some client connects to or disconnects from the signalling server. The username (e.g. "star-trainee") is passed as a parameter.
         public const string PeerAdded = "peer_added";
         public const string PeerRemoved = "peer_removed";
+
+        public const string RemoteStreamAdded = "remote_stream_added";
+        public const string RemoteStreamRemoved = "remote_stream_removed";
     }
 }
