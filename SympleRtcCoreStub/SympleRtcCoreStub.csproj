@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19CCD44B-5E93-4471-942F-F5B1164DF168}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SympleRtcCoreStub</RootNamespace>
+    <AssemblyName>SympleRtcCoreStub</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SympleRtcCore\Callback.cs">
+      <Link>Callback.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\JObjectWithActions.cs">
+      <Link>JObjectWithActions.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\Messenger.cs">
+      <Link>Messenger.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\StarWebrtcContext.cs">
+      <Link>StarWebrtcContext.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\Symple.cs">
+      <Link>Symple.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleClient.cs">
+      <Link>SympleClient.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleCommand.cs">
+      <Link>SympleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleDispatcher.cs">
+      <Link>SympleDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleEngineOptions.cs">
+      <Link>SympleEngineOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleEvent.cs">
+      <Link>SympleEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleLog.cs">
+      <Link>SympleLog.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleManager.cs">
+      <Link>SympleManager.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleMedia.cs">
+      <Link>SympleMedia.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleMessage.cs">
+      <Link>SympleMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SymplePlayer.cs">
+      <Link>SymplePlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SymplePlayerEngine.cs">
+      <Link>SymplePlayerEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SymplePlayerEngineWebRTC.cs">
+      <Link>SymplePlayerEngineWebRTC.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SymplePlayerOptions.cs">
+      <Link>SymplePlayerOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SymplePresence.cs">
+      <Link>SymplePresence.cs</Link>
+    </Compile>
+    <Compile Include="..\SympleRtcCore\SympleRoster.cs">
+      <Link>SympleRoster.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
