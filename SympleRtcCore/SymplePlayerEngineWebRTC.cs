@@ -50,7 +50,16 @@ namespace SympleRtcCore
 #if NETFX_CORE
             if (!webrtcInitialized)
             {
-                WebRTC.Initialize(null);    // needed before calling any webrtc functions http://stackoverflow.com/questions/43331677/webrtc-for-uwp-new-rtcpeerconnection-doesnt-complete-execution
+                // needed before calling any webrtc functions http://stackoverflow.com/questions/43331677/webrtc-for-uwp-new-rtcpeerconnection-doesnt-complete-execution
+                if (player.options.CoreDispatcher != null)
+                {
+                    WebRTC.Initialize(player.options.CoreDispatcher);
+                } else
+                {
+                    WebRTC.Initialize(null);
+                }
+
+                
                 WebRTC.EnableLogging(LogLevel.LOGLVL_ERROR);
                 WebRTC.EnableLogging(LogLevel.LOGLVL_INFO);
                 WebRTC.EnableLogging(LogLevel.LOGLVL_SENSITIVE);

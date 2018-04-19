@@ -84,7 +84,7 @@ namespace SympleRtcCore
 
                 string announceDataJsonString = JsonConvert.SerializeObject(announceData, Formatting.None);
                 Messenger.Broadcast(SympleLog.LogTrace, "announceDataJsonString: " + announceDataJsonString);
-
+                
                 this.socket.Emit("announce", (resObj) => {
                     Messenger.Broadcast(SympleLog.LogDebug, "symple:client: announced " + resObj);
                     Messenger.Broadcast(SympleLog.Announced);
@@ -177,7 +177,7 @@ namespace SympleRtcCore
                         // Dispatch to the application
                         this.dispatch((string)m["type"], m);
                     });
-
+                
 
                 }, announceData);
             });
@@ -210,11 +210,15 @@ namespace SympleRtcCore
                 this.setError("connect");
             });
 
-            this.socket.On(Socket.EVENT_DISCONNECT, () =>
+            this.socket.On(Socket.EVENT_DISCONNECT, (data) =>
             {
                 try
                 {
                     Messenger.Broadcast(SympleLog.LogInfo, "symple:client: disconnect");
+
+                    string msg = (string)data;
+                    Messenger.Broadcast(SympleLog.LogInfo, "symple:client: disconnect msg: " + msg);
+
                     Messenger.Broadcast(SympleLog.Disconnect);
                     this.peer["online"] = false;
                     this.dispatch("disconnect");

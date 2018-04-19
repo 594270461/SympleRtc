@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
+
 #if NETFX_CORE
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -81,10 +83,7 @@ namespace SympleRtcCore
         public string LocalPeerGroup { get; set; } = "public";
 
 #if NETFX_CORE
-        /// <summary>
-        /// The XAML MediaElement that should be used to display incoming video.
-        /// </summary>
-        public MediaElement ReceiveVideoMediaElement { get; set; }
+        public CoreDispatcher CoreDispatcher;
 #endif
 
         public static StarWebrtcContext CreateAnnotationReceiverContext()
@@ -184,7 +183,7 @@ namespace SympleRtcCore
 
             playerOptions.userMediaConstraints.audioEnabled = this.AudioEnabled;
             playerOptions.userMediaConstraints.videoEnabled = this.VideoEnabled;
-            playerOptions.ReceiveVideoMediaElement = ReceiveVideoMediaElement;
+            playerOptions.CoreDispatcher = CoreDispatcher;
 
             playerOptions.engine = "WebRTC";
 

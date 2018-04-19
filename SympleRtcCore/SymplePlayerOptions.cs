@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 #if NETFX_CORE
 using Org.WebRtc;
-using Windows.UI.Xaml.Controls;
+using Windows.UI.Core;
 #endif
 
 namespace SympleRtcCore
@@ -23,11 +23,10 @@ namespace SympleRtcCore
 #if NETFX_CORE
         public RTCConfiguration rtcConfig;
         public RTCMediaStreamConstraints userMediaConstraints = new RTCMediaStreamConstraints { videoEnabled = true, audioEnabled = true };
+#endif
 
-        /// <summary>
-        /// The XAML MediaElement that should be used to display incoming video.
-        /// </summary>
-        public MediaElement ReceiveVideoMediaElement { get; set; }
+#if NETFX_CORE
+        public CoreDispatcher CoreDispatcher;
 #endif
     }
 }
